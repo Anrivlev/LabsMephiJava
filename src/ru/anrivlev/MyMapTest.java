@@ -27,7 +27,7 @@ public class MyMapTest {
         MyMap testMap = new MyMap(1, "elem1");
         testMap.put(2, "elem2");
 
-        testMap.remove(1);
+        Object a = testMap.remove(1);
 
         Assert.assertFalse(testMap.keyContains(1));
     }
@@ -66,7 +66,7 @@ public class MyMapTest {
         testMap.put(2, "elem2");
         testMap.put(3, "elem3");
 
-        Assert.assertTrue(testMap.getSize() ==  3);
+        assertEquals(3, testMap.getSize());
     }
 
     @Test
