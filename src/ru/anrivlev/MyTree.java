@@ -120,7 +120,6 @@ public class MyTree {
             return null;
         }
     }
-
     public int getSize() {
         return size;
     }

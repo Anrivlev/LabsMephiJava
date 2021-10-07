@@ -18,6 +18,9 @@ public class MyMap {
         public void setValue(Object value) {
             this.value = value;
         }
+        public String toString() {
+            return "(" + this.key + " " + this.value + ")";
+        }
     }
     public MyMap() {
         this.map = new MyList();
@@ -88,5 +91,8 @@ public class MyMap {
     }
     public boolean isEmpty() {
         return this.map.isEmpty();
+    }
+    public String toString() {
+        return this.map.toString();
     }
 }
