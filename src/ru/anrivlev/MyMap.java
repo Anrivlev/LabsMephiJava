@@ -35,7 +35,7 @@ public class MyMap {
     public Object get(Object key) {
         for (int i = 0; i < this.map.getSize(); i++) {
             Pair tmp = (Pair) this.map.get(i);
-            if (tmp.key == key) return tmp.value;
+            if (tmp.key.equals(key)) return tmp.value;
         }
         return null;
     }
@@ -49,7 +49,7 @@ public class MyMap {
         Object result = null;
         for (int i = 0; i < this.map.getSize(); i++) {
             Pair tmp = (Pair) this.map.get(i);
-            if (tmp.key == key) {
+            if (tmp.key.equals(key)) {
                 result = tmp.value;
                 this.map.remove(i);
             }
@@ -59,7 +59,7 @@ public class MyMap {
     public boolean keyContains(Object key) {
         for (int i = 0; i < this.map.getSize(); i++) {
             Pair tmp = (Pair) this.map.get(i);
-            if (tmp.key == key) return true;
+            if (tmp.key.equals(key)) return true;
         }
         return false;
     }
