@@ -89,6 +89,16 @@ public class MyTree {
                 return null;
             }
         }
+        private int getMaxDepth() {
+            if (this.children.isEmpty()) { return this.depth; }
+            int maxDepth = 0;
+            for (int i = 0; i < this.children.getSize(); i++) {
+                Node tmp = (Node) this.children.get(i);
+                int maxDepthChild = tmp.getMaxDepth();
+                if (maxDepthChild > maxDepth) { maxDepth = maxDepthChild; }
+            }
+            return  maxDepth;
+        }
     }
     public MyTree() {
         this.root = null;
@@ -125,5 +135,17 @@ public class MyTree {
     }
     public boolean isEmpty() {
         return this.root == null;
+    }
+    public int getMaxDepth() {
+        int maxDepth = 0;
+        for (int i = 0; i < this.root.children.getSize(); i++)
+        {
+            Node tmp = (Node) this.root.children.get(i);
+            int maxDepthChild = tmp.getMaxDepth();
+            if (maxDepthChild > maxDepth) {
+                maxDepth = maxDepthChild;
+            }
+        }
+        return maxDepth;
     }
 }
