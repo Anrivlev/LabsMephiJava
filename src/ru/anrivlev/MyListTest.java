@@ -68,6 +68,18 @@ public class MyListTest {
         Assert.assertTrue(actual.isEmpty());
     }
 
+
+    @Test
+    public void remove_tail() {
+        MyList actual = new MyList("TEXT1");
+        actual.add("TEXT2");
+        actual.add("TEXT3");
+
+        actual.remove(2);
+
+        Assert.assertTrue(!actual.contains("TEXT3") && actual.contains("TEXT1") && actual.contains("TEXT2"));
+    }
+
     @Test
     public void get() {
         MyList actual = new MyList("TEXT1");

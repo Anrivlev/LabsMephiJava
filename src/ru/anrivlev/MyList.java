@@ -3,27 +3,30 @@ package ru.anrivlev;
 public class MyList {
     private int size;
     private Node first;
-    private static class Node {
+    private Node last;
+
+    private class Node {
         Object obj;
         Node next;
+
         private Node(Object obj, Node next) {
             this.obj = obj;
             this.next = next;
         }
+
         private void set(Object obj) {
             this.obj = obj;
         }
     }
+
     private Node getFirstNode() {
         return this.first;
     }
+
     private Node getLastNode() {
-        Node ptr = this.getFirstNode();
-        while (ptr.next != null) {
-            ptr = ptr.next;
-        }
-        return ptr;
+        return this.last;
     }
+
     private Node getNode(int index) {
         if (index >= this.getSize()) {
             return null;
@@ -35,27 +38,41 @@ public class MyList {
             return ptr;
         }
     }
+
     public MyList() {
         this.size = 0;
         this.first = null;
+        this.last = null;
     }
+
     public MyList(Object obj) {
         this.size = 1;
         this.first = new Node(obj, null);
+        this.last = this.first;
     }
+
     public int getSize() {
         return size;
     }
+
     public void add(Object obj) {
-        if (this.getSize() == 0)
-        {
+        Node tmp = new Node(obj, null);
+        if (this.getSize() == 0) {
             this.first = new Node(obj, null);
-        } else this.getLastNode().next = new Node(obj, null);
+        } else {
+            this.getLastNode().next = tmp;
+        }
+        this.last = tmp;
         this.size++;
     }
+
     public void add(Object obj, int index) {
         if (index == 0) {
             this.first = new Node(obj, this.getFirstNode());
+        } else if(index == this.size - 1) {
+                Node tmp = new Node(obj, null);
+                this.last.next = tmp;
+                this.last = tmp;
         } else {
             Node ptr = this.getFirstNode();
             Node ptrNext = null;
@@ -72,11 +89,15 @@ public class MyList {
         }
         this.size++;
     }
+
     public void remove(int index) {
         if (this.isEmpty()) return;
         if (index >= getSize()) return;
         if (index == 0) {
             this.first = this.first.next;
+            if (this.first == null) {
+                this.last = null;
+            }
         } else {
             Node ptr = this.getFirstNode();
             Node ptrNext = null;
@@ -92,9 +113,14 @@ public class MyList {
             if (ptrNext != null) {
                 ptr.next = ptrNext.next;
             }
+            if (index == this.getSize() - 1)
+            {
+                this.last = ptr;
+            }
         }
         this.size--;
     }
+
     public Object get(int index) {
         Node ptr = this.getNode(index);
         if (ptr == null) {
@@ -103,15 +129,18 @@ public class MyList {
             return ptr.obj;
         }
     }
+
     public void set(Object obj, int index) {
         Node ptr = this.getNode(index);
         if (ptr != null) {
             ptr.set(obj);
         }
     }
+
     public boolean isEmpty() {
         return this.getSize() == 0;
     }
+
     public boolean contains(Object obj) {
         Node ptr = this.getFirstNode();
         while (ptr != null) {
@@ -122,6 +151,7 @@ public class MyList {
         }
         return false;
     }
+
     public int indexOf(Object obj) {
         int index = 0;
         Node ptr = this.getFirstNode();
@@ -134,6 +164,7 @@ public class MyList {
         }
         return -1;
     }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder("MyList{");
