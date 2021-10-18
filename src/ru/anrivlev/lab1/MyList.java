@@ -1,4 +1,4 @@
-package ru.anrivlev;
+package ru.anrivlev.lab1;
 
 public class MyList {
     private int size;

@@ -1,4 +1,4 @@
-package ru.anrivlev;
+package ru.anrivlev.lab1;
 
 public class MyTree {
     private Node root;

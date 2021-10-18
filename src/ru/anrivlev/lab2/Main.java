@@ -1,8 +1,8 @@
-package ru.anrivlev;
+package ru.anrivlev.lab2;
 import java.util.*;
 
-public class Lab2Tasks {
-    public void task1() {
+public class Main {
+    public static void task1() {
         Scanner in = new Scanner(System.in);
         String str = in.nextLine();
         str = str.trim();
@@ -33,5 +33,8 @@ public class Lab2Tasks {
             }
         }
         System.out.println(result);
+    }
+    public static void main(String[] args) {
+        task1();
     }
 }
