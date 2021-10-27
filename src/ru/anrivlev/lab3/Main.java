@@ -14,7 +14,7 @@ public class Main {
     }
     public static void task2(List<Employee> employees) {
         System.out.println("TASK2");
-        Predicate<Employee> isDept19 = e -> e.getDept() == "19";
+        Predicate<Employee> isDept19 = e -> e.getDept().equals("19");
         Stream stream = employees.stream();
         stream.filter(isDept19).forEach(e -> Accountant.paySalary((Employee) e));
         System.out.println("END OF TASK2\n");
@@ -22,7 +22,7 @@ public class Main {
     public static void task3(List<Employee> employees) {
         System.out.println("TASK3");
         Predicate<Employee> isAgeOver30 = e -> e.getAge() >= 30;
-        Predicate<Employee> isDept19 = e -> e.getDept() == "19";
+        Predicate<Employee> isDept19 = e -> e.getDept().equals("19");
         Stream stream = employees.stream();
         stream.filter(isDept19).filter(isAgeOver30).forEach(e -> Accountant.paySalary((Employee) e));
         System.out.println("END OF TASK3\n");
@@ -52,7 +52,7 @@ public class Main {
         System.out.println("TASK7");
         Function<Employee, String> getName = Employee::getGivenName;
         Stream stream = employees.stream();
-        stream.map(getName).forEach(e -> System.out.println(e));
+        stream.map(getName).forEach(System.out::println);
         System.out.println("END OF TASK7\n");
     }
     public static void task8() {
