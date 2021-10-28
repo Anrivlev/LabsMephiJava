@@ -3,17 +3,6 @@ package ru.anrivlev.lab3;
 import java.util.LinkedList;
 import java.util.List;
 
-enum Gender {
-    MALE,
-    FEMALE
-}
-
-enum Role {
-    STAFF,
-    MANAGER,
-    EXECUTIVE
-}
-
 public class Employee {
     private final String givenName;
     private final String surName;
