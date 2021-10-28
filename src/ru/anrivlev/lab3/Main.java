@@ -58,7 +58,7 @@ public class Main {
     public static void task9(List<Employee> employees) {
         System.out.println("TASK9");
         BiPredicate<Employee, String> checkName= (e, s) -> e.getGivenName().equals(s);
-        employees.stream().filter(e -> checkName.test((Employee) e, "Emily")).forEach(e -> System.out.println(e));
+        employees.stream().filter(e -> checkName.test((Employee) e, "Emily")).forEach(System.out::println);
         System.out.println("END OF TASK9\n");
     }
     public static void main(String[] args) {
