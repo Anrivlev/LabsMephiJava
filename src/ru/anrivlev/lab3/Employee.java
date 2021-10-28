@@ -41,61 +41,76 @@ public class Employee {
         private String city = null;
         private String state = null;
         private int code = 0;
-        public Builder(){
+
+        public Builder() {
 
         }
-        public Builder givenName (String val) {
+
+        public Builder givenName(String val) {
             givenName = val;
             return this;
         }
+
         public Builder surName(String val) {
             surName = val;
             return this;
         }
+
         public Builder age(int val) {
             age = val;
             return this;
         }
+
         public Builder gender(Gender val) {
             gender = val;
             return this;
         }
+
         public Builder role(Role val) {
             role = val;
             return this;
         }
+
         public Builder dept(String val) {
             dept = val;
             return this;
         }
+
         public Builder eMail(String val) {
             eMail = val;
             return this;
         }
+
         public Builder phone(String val) {
             phone = val;
             return this;
         }
+
         public Builder address(String val) {
             address = val;
             return this;
         }
+
         public Builder city(String val) {
             city = val;
             return this;
         }
+
         public Builder state(String val) {
             state = val;
             return this;
         }
+
         public Builder code(int val) {
             code = val;
             return this;
         }
+
         public Employee build() {
             return new Employee(this);
         }
     }
+
     private Employee(Builder builder) {
         givenName = builder.givenName;
         surName = builder.surName;
@@ -110,6 +125,7 @@ public class Employee {
         state = builder.state;
         code = builder.code;
     }
+
     public String toString() {
         return "Name: " +
                 givenName +
@@ -136,6 +152,7 @@ public class Employee {
                 "; code:" +
                 code;
     }
+
     public static List<Employee> CreateShortList() {
         List<Employee> result = new LinkedList<>();
         result.add(new Employee.Builder().givenName("John")
