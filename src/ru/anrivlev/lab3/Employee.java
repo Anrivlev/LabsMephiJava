@@ -16,20 +16,22 @@ public class Employee {
     private final String city;
     private final String state;
     private final int code;
+    private final double salary;
 
     public static class Builder {
-        private String givenName = null;
-        private String surName = null;
+        private String givenName;
+        private String surName;
         private int age = 0;
-        private Gender gender = null;
-        private Role role = null;
-        private String dept = null;
-        private String eMail = null;
-        private String phone = null;
-        private String address = null;
-        private String city = null;
-        private String state = null;
+        private Gender gender;
+        private Role role;
+        private String dept;
+        private String eMail;
+        private String phone;
+        private String address;
+        private String city;
+        private String state;
         private int code = 0;
+        private double salary = 0;
 
         public Builder() {
 
@@ -95,6 +97,11 @@ public class Employee {
             return this;
         }
 
+        public Builder salary(double val) {
+            salary = val;
+            return this;
+        }
+
         public Employee build() {
             return new Employee(this);
         }
@@ -113,6 +120,7 @@ public class Employee {
         city = builder.city;
         state = builder.state;
         code = builder.code;
+        salary = builder.salary;
     }
 
     public String toString() {
@@ -139,12 +147,14 @@ public class Employee {
                 "; state:" +
                 state +
                 "; code:" +
-                code;
+                code +
+                "; salary: " +
+                salary;
     }
 
     public static List<Employee> CreateShortList() {
         List<Employee> result = new LinkedList<>();
-        result.add(new Employee.Builder().givenName("John")
+        result.add(new Builder().givenName("John")
                 .surName("Smith")
                 .age(47)
                 .gender(Gender.MALE)
@@ -156,6 +166,7 @@ public class Employee {
                 .city("London")
                 .state("CA")
                 .code(310)
+                .salary(90000)
                 .build());
         result.add(new Employee.Builder().givenName("Will")
                 .surName("Smith")
@@ -169,6 +180,7 @@ public class Employee {
                 .city("London")
                 .state("CA")
                 .code(310)
+                .salary(60000)
                 .build());
         result.add(new Employee.Builder().givenName("John")
                 .surName("Meyers")
@@ -182,6 +194,7 @@ public class Employee {
                 .city("New York")
                 .state("NY")
                 .code(718)
+                .salary(30000)
                 .build());
         result.add(new Employee.Builder().givenName("Elena")
                 .surName("Smith")
@@ -195,6 +208,7 @@ public class Employee {
                 .city("London")
                 .state("CA")
                 .code(310)
+                .salary(80000)
                 .build());
         result.add(new Employee.Builder().givenName("Anna")
                 .surName("Shalame")
@@ -208,6 +222,7 @@ public class Employee {
                 .city("New York")
                 .state("NY")
                 .code(718)
+                .salary(35000)
                 .build());
         result.add(new Employee.Builder().givenName("Jack")
                 .surName("Wright")
@@ -221,6 +236,7 @@ public class Employee {
                 .city("Chicago")
                 .state("IL")
                 .code(847)
+                .salary(55000)
                 .build());
         result.add(new Employee.Builder().givenName("Emily")
                 .surName("Wong")
@@ -234,6 +250,7 @@ public class Employee {
                 .city("Chicago")
                 .state("IL")
                 .code(847)
+                .salary(30000)
                 .build());
         return result;
     }
@@ -284,5 +301,9 @@ public class Employee {
 
     public int getCode() {
         return code;
+    }
+
+    public double getSalary() {
+        return salary;
     }
 }

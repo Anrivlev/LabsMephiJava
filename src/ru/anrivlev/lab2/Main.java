@@ -22,7 +22,7 @@ public class Main {
         }
     }
 
-    public void task2() {
+    public static void task2() {
         Scanner in = new Scanner(System.in);
         String str = in.nextLine();
         str = str.trim();
@@ -40,5 +40,6 @@ public class Main {
 
     public static void main(String[] args) {
         task1();
+        task2();
     }
 }
