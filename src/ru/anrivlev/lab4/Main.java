@@ -2,6 +2,7 @@ package ru.anrivlev.lab4;
 
 import java.util.List;
 import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.function.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -9,32 +10,40 @@ import java.util.stream.Stream;
 import ru.anrivlev.lab3.*;
 
 public class Main {
+
+    // 1. map и peek
     public static void task1a() {
+        System.out.println("TASK1.b");
+        List<Employee> employees = Employee.CreateShortList();
+        Consumer<Employee> paySalary = Accountant::paySalary;
+        employees.stream()
+                .peek(paySalary)
+                .map(Employee::getSalary)
+                .forEach(System.out::println);
+        System.out.println("END OF TASK1.b\n");
+
+    }
+
+    public static void task1b() {
         System.out.println("TASK1.a");
         List<Employee> employees = Employee.CreateShortList();
+        Consumer<Employee> payPremium = Accountant::payPremium;
         employees.stream()
+                .peek(payPremium)
                 .map(Employee::getSalary)
                 .forEach(System.out::println);
         System.out.println("END OF TASK1.a\n");
     }
 
-    public static void task1b() {
-        System.out.println("TASK1.b");
-        List<Employee> employees = Employee.CreateShortList();
-        Consumer<Employee> paySalary = Accountant::paySalary;
-        employees.stream().peek(paySalary).map(Employee::getSalary).forEach(System.out::println);
-        System.out.println("END OF TASK1.b\n");
-    }
-
+    // 2. findFirst и lazy
     public static void task2a() {
         System.out.println("TASK2.a");
         List<Employee> employees = Employee.CreateShortList();
         Predicate<Employee> isFemale = e -> e.getGender() == Gender.FEMALE;
-        double femaleSalary = employees.stream()
+        OptionalDouble femaleSalary = employees.stream()
                 .filter(isFemale)
-                .map(Employee::getSalary)
-                .findFirst()
-                .get();
+                .mapToDouble(Employee::getSalary)
+                .findFirst();
         System.out.println(femaleSalary);
         System.out.println("END OF TASK2.a\n");
     }
@@ -43,23 +52,23 @@ public class Main {
         System.out.println("TASK2.b");
         List<Employee> employees = Employee.CreateShortList();
         Predicate<Employee> isMale = e -> e.getGender() == Gender.MALE;
-        int maleAge = employees.stream()
+        OptionalInt maleAge = employees.stream()
                 .filter(isMale)
-                .map(Employee::getAge)
-                .findFirst()
-                .get();
+                .mapToInt(Employee::getAge)
+                .findFirst();
         System.out.println(maleAge);
         System.out.println("END OF TASK2.b\n");
     }
 
+    //3. max, min
     public static void task3a() {
         System.out.println("TASK3.a");
         List<Employee> employees = Employee.CreateShortList();
         Predicate<Employee> isMale = e -> e.getGender() == Gender.MALE;
-        Double maxMaleSalary = employees.stream()
+        OptionalDouble maxMaleSalary = employees.stream()
                 .filter(isMale)
-                .map(Employee::getSalary)
-                .max(Double::compareTo).get();
+                .mapToDouble(Employee::getSalary)
+                .max();
         System.out.println("Maximal male salary: " + maxMaleSalary);
         System.out.println("END OF TASK3.a\n");
     }
@@ -68,14 +77,15 @@ public class Main {
         System.out.println("TASK3.b");
         List<Employee> employees = Employee.CreateShortList();
         Predicate<Employee> isMale = e -> e.getGender() == Gender.MALE;
-        Double minMaleSalary = employees.stream()
+        OptionalDouble minMaleSalary = employees.stream()
                 .filter(isMale)
-                .map(Employee::getSalary)
-                .min(Double::compareTo).get();
+                .mapToDouble(Employee::getSalary)
+                .min();
         System.out.println("Minimal male salary: " + minMaleSalary);
         System.out.println("END OF TASK3.b\n");
     }
 
+    //4. average, sum
     public static void task4a() {
         System.out.println("TASK4.a");
         List<Employee> employees = Employee.CreateShortList();
