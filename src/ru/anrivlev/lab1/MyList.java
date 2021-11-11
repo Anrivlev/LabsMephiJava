@@ -58,7 +58,7 @@ public class MyList {
     public void add(Object obj) {
         Node tmp = new Node(obj, null);
         if (this.getSize() == 0) {
-            this.first = new Node(obj, null);
+            this.first = tmp;
         } else {
             this.getLastNode().next = tmp;
         }
@@ -178,5 +178,32 @@ public class MyList {
         }
         result.append("}");
         return result.toString();
+    }
+
+    public static MyList merge(MyList a, MyList b) {
+        MyList result = new MyList();
+        Node nodeA = a.first;
+        Node nodeB = b.first;
+        while (nodeA != null && nodeB != null) {
+            if ((Double) nodeA.obj < (Double) nodeB.obj) {
+                result.add(nodeA.obj);
+                nodeA = nodeA.next;
+            } else {
+                result.add(nodeB.obj);
+                nodeB = nodeB.next;
+            }
+        }
+        if (nodeA == null) {
+            while(nodeB != null) {
+                result.add(nodeB.obj);
+                nodeB = nodeB.next;
+            }
+        } else if (nodeB == null) {
+            while(nodeA != null) {
+                result.add(nodeA.obj);
+                nodeA = nodeA.next;
+            }
+        }
+        return result;
     }
 }

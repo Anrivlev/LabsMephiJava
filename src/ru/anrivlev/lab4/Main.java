@@ -14,13 +14,15 @@ public class Main {
         List<Employee> employees = Employee.CreateShortList();
         employees.stream()
                 .map(Employee::getSalary)
-                .peek(System.out::println);
+                .forEach(System.out::println);
         System.out.println("END OF TASK1.a\n");
     }
 
     public static void task1b() {
         System.out.println("TASK1.b");
-
+        List<Employee> employees = Employee.CreateShortList();
+        Consumer<Employee> paySalary = Accountant::paySalary;
+        employees.stream().peek(paySalary).map(Employee::getSalary).forEach(System.out::println);
         System.out.println("END OF TASK1.b\n");
     }
 
@@ -29,7 +31,8 @@ public class Main {
         List<Employee> employees = Employee.CreateShortList();
         Predicate<Employee> isFemale = e -> e.getGender() == Gender.FEMALE;
         double femaleSalary = employees.stream()
-                .filter(isFemale).map(Employee::getSalary)
+                .filter(isFemale)
+                .map(Employee::getSalary)
                 .findFirst()
                 .get();
         System.out.println(femaleSalary);
@@ -38,7 +41,14 @@ public class Main {
 
     public static void task2b() {
         System.out.println("TASK2.b");
-
+        List<Employee> employees = Employee.CreateShortList();
+        Predicate<Employee> isMale = e -> e.getGender() == Gender.MALE;
+        int maleAge = employees.stream()
+                .filter(isMale)
+                .map(Employee::getAge)
+                .findFirst()
+                .get();
+        System.out.println(maleAge);
         System.out.println("END OF TASK2.b\n");
     }
 
@@ -81,7 +91,7 @@ public class Main {
     public static void task4b() {
         System.out.println("TASK4.b");
         List<Employee> employees = Employee.CreateShortList();
-        Double totalSalary = employees.stream()
+        double totalSalary = employees.stream()
                 .mapToDouble(Employee::getSalary)
                 .sum();
         System.out.println("Total salary of all employees: " + totalSalary);

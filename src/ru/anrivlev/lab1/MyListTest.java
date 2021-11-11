@@ -120,4 +120,22 @@ public class MyListTest {
     @Test
     public void testToString() {
     }
+
+    @Test
+    public void merge() {
+        MyList list1 = new MyList(1.0);
+        list1.add(2.7);
+        list1.add(6.2);
+        list1.add(8.3);
+        list1.add(10.0);
+        list1.add(10.1);
+        MyList list2 = new MyList(3.4);
+        list2.add(3.7);
+        list2.add(9.4);
+
+        MyList list3 = MyList.merge(list1, list2);
+        System.out.println(list1);
+        System.out.println(list2);
+        System.out.println(list3);
+    }
 }
